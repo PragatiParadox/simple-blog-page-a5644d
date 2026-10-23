@@ -1,0 +1,87 @@
+@import 'tailwindcss' source('../');
+@plugin "@tailwindcss/typography";
+
+@theme {
+  --font-display: 'Fraunces', Georgia, serif;
+  --font-body: 'Literata', Georgia, serif;
+  --font-mono: 'IBM Plex Mono', Menlo, Consolas, monospace;
+
+  --color-paper: #f5efe3;
+  --color-paper-deep: #ebe2d0;
+  --color-card: #fffaf1;
+  --color-ink: #1f1b16;
+  --color-ink-soft: #5c5347;
+  --color-rule: #d9cdb6;
+  --color-clay: #b4532a;
+  --color-moss: #4f6b3a;
+  --color-dusk: #3d4f7a;
+}
+
+@layer base {
+  :focus-visible {
+    outline: 2px solid var(--color-clay);
+    outline-offset: 4px;
+  }
+
+  ::selection {
+    background: var(--color-clay);
+    color: var(--color-card);
+  }
+}
+
+body {
+  margin: 0;
+  font-family: var(--font-body);
+  color: var(--color-ink);
+  background-color: var(--color-paper);
+  background-image: radial-gradient(
+    circle at 1px 1px,
+    rgb(31 27 22 / 0.06) 1px,
+    transparent 0
+  );
+  background-size: 22px 22px;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+code {
+  font-family: var(--font-mono);
+}
+
+.post-card {
+  --accent: var(--color-clay);
+  transition:
+    transform 300ms cubic-bezier(0.2, 0.7, 0.2, 1),
+    box-shadow 300ms ease,
+    border-color 300ms ease;
+}
+
+.post-card:hover,
+.post-card:focus-within {
+  transform: translateY(-4px) rotate(-0.25deg);
+  border-color: var(--accent);
+  box-shadow:
+    6px 6px 0 var(--accent),
+    0 18px 40px -20px rgb(31 27 22 / 0.35);
+}
+
+.post-card .read-more span {
+  display: inline-block;
+  transition: transform 250ms ease;
+}
+
+.post-card:hover .read-more span {
+  transform: translateX(6px);
+}
+
+.post-card .title-link {
+  background-image: linear-gradient(var(--accent), var(--accent));
+  background-size: 0% 2px;
+  background-position: 0 100%;
+  background-repeat: no-repeat;
+  transition: background-size 350ms ease;
+}
+
+.post-card:hover .title-link {
+  background-size: 100% 2px;
+}
